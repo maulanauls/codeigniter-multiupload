@@ -11,7 +11,7 @@ class Firstpage extends CI_Controller {
     public function index() {
       //-- pagination --//
       $page=$this->input->get('per_page');
-      $batas=2; //jlh data yang ditampilkan per halaman
+      $batas=6; //jlh data yang ditampilkan per halaman
       if(!$page):     //jika page bernilai kosong maka batas akhirna akan di set 0
          $offset = 0;
       else:
