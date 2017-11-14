@@ -1,6 +1,6 @@
 for demo 
 ##################
-54.255.217.21/multiupload
+http://54.255.217.21/multiupload/
 
 
 
