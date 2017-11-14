@@ -19,7 +19,7 @@ class Firstpage extends CI_Controller {
       endif;
 
       $config['page_query_string'] = TRUE; //mengaktifkan pengambilan method get pada url default
-      $config['base_url'] = base_url().'utama?';   //url yang muncul ketika tombol pada paging diklik
+      $config['base_url'] = base_url().'firstpage?';   //url yang muncul ketika tombol pada paging diklik
       $config['total_rows'] = $this->settings->count_angkatan_array(); // jlh total article
       $config['per_page'] = $batas; //batas sesuai dengan variabel batas
       $config['uri_segment'] = $page; //merupakan posisi pagination dalam url pada kesempatan ini saya menggunakan method get untuk menentukan posisi pada url yaitu per_page
@@ -106,6 +106,21 @@ class Firstpage extends CI_Controller {
                         $this->upload->initialize($config);
                         if ($this->upload->do_upload('file_image')) {
                             $upload_data = $this->upload->data();
+
+                            $image_config["image_library"] = "gd2";
+                            $image_config["source_image"] = $this->image_path . '/' . $upload_data['file_name'];
+                            $image_config['create_thumb'] = FALSE;
+                            $image_config['maintain_ratio'] = FALSE;
+                            $image_config['new_image'] = $this->image_path . '/' . $upload_data['file_name'];
+                            $image_config['quality'] = "100%";
+                            $image_config['width'] = 320;
+                            $image_config['height'] = 480;
+                            //$dim = (intval($upload_data["image_width"]) / intval($upload_data["image_height"])) - ($image_config['width'] / $image_config['height']);
+                            //$image_config['master_dim'] = ($dim > 0)? "height" : "width";
+                            $this->load->library('image_lib');
+                            $this->image_lib->initialize($image_config);
+                            $this->image_lib->resize();
+
                             $data = array (
                              'img' => $upload_data["file_name"],
                              'date_created' => date("Y-m-d"),

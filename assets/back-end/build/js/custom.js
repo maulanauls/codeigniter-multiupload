@@ -105,7 +105,7 @@ function bttn_save_c_angkatan() {
                   timeOut: 8000
               };
               toastr.success('berhasil, menyimpan data', 'system says,');
-              //location.reload();
+              location.reload();
           } else {
               for (var i = 0; i < data.inputerror.length; i++) {
                 $('[name="' + data.inputerror[i] + '"]').parent().parent().addClass('has-error');
